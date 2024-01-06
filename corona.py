@@ -13,7 +13,7 @@ df_usa_confirmed = df_confirmed[df_confirmed['Country/Region'] == 'US']
 df_usa_confirmed = df_usa_confirmed.copy().drop(columns=['Lat', 'Long', 'Country/Region', 'Province/State'])\
                     .transpose().set_axis(['Confirmed'], axis=1)\
                     .reset_index().rename(columns={'index': 'Date'})
-df_usa_confirmed['Date'] = pd.to_datetime(df_usa_confirmed['Date'])
+df_usa_confirmed['Date'] = pd.to_datetime(df_usa_confirmed['Date'], format='%m/%d/%y')
 
 df_usa_confirmed_daily = pd.DataFrame()
 
@@ -32,10 +32,12 @@ for date, conf in df_usa_confirmed.iloc():
 
     df_usa_confirmed_daily.at[date_row, 0] = daily
 
-df_usa_confirmed_daily.set_axis(['Daily'], axis=1, inplace=True)
-df_usa_confirmed_daily.reset_index(inplace=True)
-df_usa_confirmed_daily.rename(columns={'index': 'Date'}, inplace=True)
-df_usa_confirmed_daily['Date'] = pd.to_datetime(df_usa_confirmed_daily['Date'])
+df_usa_confirmed_daily.set_axis(['Daily'], axis=1)
+
+# df_usa_confirmed_daily.reset_index(inplace=True)
+df_usa_confirmed_daily.rename(columns={'index': 'Date'})
+
+df_usa_confirmed_daily['Date'] = pd.to_datetime(df_usa_confirmed_daily['Date'], format='%m/%d/%y')
 df_usa_confirmed_daily = df_usa_confirmed_daily[1:]
 
 df_deaths = pd.read_csv('time_series_covid19_deaths_global.csv')
@@ -69,6 +71,7 @@ ax.plot(df_usa_deaths['Date'], df_usa_deaths['Deaths'], label='Deaths', color='k
 ax.plot(df_usa_recovered['Date'], df_usa_recovered['Recovered'], label='Recovered', linewidth=2)
 
 ax.bar(df_usa_confirmed_daily['Date'], df_usa_confirmed_daily['Daily'], label='Daily Cases', color='y')
+
 
 fig.legend(loc='upper left', borderaxespad=12)
 plt.tight_layout()
