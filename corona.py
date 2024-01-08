@@ -32,10 +32,9 @@ for date, conf in df_usa_confirmed.iloc():
 
     df_usa_confirmed_daily.at[date_row, 0] = daily
 
-df_usa_confirmed_daily.set_axis(['Daily'], axis=1)
-
-# df_usa_confirmed_daily.reset_index(inplace=True)
-df_usa_confirmed_daily.rename(columns={'index': 'Date'})
+df_usa_confirmed_daily.reset_index(inplace=True, allow_duplicates=True)
+df_usa_confirmed_daily.rename(columns={'index': 'Date'}, inplace=True)
+df_usa_confirmed_daily.rename(columns={0: 'Daily'}, inplace=True)
 
 df_usa_confirmed_daily['Date'] = pd.to_datetime(df_usa_confirmed_daily['Date'], format='%m/%d/%y')
 df_usa_confirmed_daily = df_usa_confirmed_daily[1:]
@@ -56,7 +55,7 @@ df_usa_recovered = df_recovered[df_recovered['Country/Region'] == 'US']
 df_usa_recovered = df_usa_recovered.copy().drop(columns=['Lat', 'Long', 'Country/Region', 'Province/State'])\
                     .transpose().set_axis(['Recovered'], axis=1)\
                     .reset_index().rename(columns={'index': 'Date'})
-df_usa_recovered['Date'] = pd.to_datetime(df_usa_recovered['Date'])
+df_usa_recovered['Date'] = pd.to_datetime(df_usa_recovered['Date'], format='%m/%d/%y')
 fig = plt.figure(figsize=(12, 8), frameon=True)
 
 plt.title('USA Confirmed vs Deaths vs Recovered')

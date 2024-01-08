@@ -21,7 +21,6 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     zip_safe=False,
-    extras_require='',
-    install_requires=['pandas', 'matplotlib'],
+    install_requires=requires,
 
 )

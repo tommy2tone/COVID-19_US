@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: covid-19_US
+Version: 0.0
+Summary: covid-19_US
+Home-page: 
+Author: Tom Hildebrand
+Author-email: thomas.hildebrand1@gmail.com
+Keywords: python pandas matplotlib covid-19
+Classifier: Programming Language :: Python
+Requires-Dist: pandas
+Requires-Dist: matplotlib

@@ -1,0 +1,8 @@
+README.txt
+setup.py
+covid_19_US.egg-info/PKG-INFO
+covid_19_US.egg-info/SOURCES.txt
+covid_19_US.egg-info/dependency_links.txt
+covid_19_US.egg-info/not-zip-safe
+covid_19_US.egg-info/requires.txt
+covid_19_US.egg-info/top_level.txt

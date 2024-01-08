@@ -19,6 +19,9 @@ Getting Started
 
 - Upgrade packaging tools.
 
-    env/bin/pip install --upgrade pip setuptools
+    venv/bin/pip install --upgrade pip setuptools
+
+- Run setup.py
+    pip install .
 
 
